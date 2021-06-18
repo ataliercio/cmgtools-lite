@@ -17,7 +17,7 @@ from keras import optimizers
 from keras.models import load_model
 
 class HiggsDiffRegressionTTH_reduced(Module):
-    def __init__(self,label="_Recl", variations=[], cut_BDT_rTT_score = 0.0, btagDeepCSVveto = 'M', doSystJEC=True):
+    def __init__(self,label="_Recl", variations=[], cut_BDT_rTT_score = 0.0, btagDeepCSVveto = 'M', doSystJEC=False):
         def loss_MSEDeltaVar(y_true, y_pred):
             y_true = tf.cast(y_true,tf.float32)
             y_pred = tf.cast(y_pred,tf.float32)
@@ -268,9 +268,9 @@ class HiggsDiffRegressionTTH_reduced(Module):
                 self.setDefault(event, jesLabel)
                 continue
 
-            if event.nTauSel_Recl_Tight > 0                           :
-                self.setDefault(event, jesLabel)
-                continue
+            #if event.nTauSel_Recl_Tight > 0                           :
+            #    self.setDefault(event, jesLabel)
+            #    continue
 
             # Enforce selection (jets part)
             if not ((getattr(event,"nJet25%s_Recl"%jesLabel)>=3 and (getattr(event,"nBJetLoose25%s_Recl"%jesLabel)>= 2 or getattr(event,"nBJetMedium25%s_Recl"%jesLabel)>= 1)) or (getattr(event,"nBJetMedium25%s_Recl"%jesLabel) >= 1 and (getattr(event,"nJet25%s_Recl"%jesLabel)+getattr(event,"nFwdJet%s_Recl"%jesLabel)-getattr(event,"nBJetLoose25%s_Recl"%jesLabel)) > 0)) : 

@@ -73,6 +73,7 @@ class EFTreweighting( Module ):
         self.hel_dict = []
 
         for subprocess in self.subprocesses:
+            #print subprocess
             self.mods.append([])
             for card in self.param_cards:
                 dirpath = tempfile.mkdtemp(dir=self.tmpdir)
@@ -83,12 +84,16 @@ class EFTreweighting( Module ):
                 del sys.modules['allmatrix2py']
                 print 'initializing', card
                 self.mods[-1][-1].initialise(card)
+                #print self.mods[-1][-1].initialise(card)
             print len(self.pdgOrderSorted)
+            #print self.pdgOrderSorted
             self.pdgOrderSorted.append( [SortPDGs(x.tolist()) for x in self.mods[-1][-1].get_pdg_order()] )
+            #print '2 ', self.pdgOrderSorted
             self.pdgOrder.append( [x.tolist() for x in self.mods[-1][-1].get_pdg_order()])
             self.all_prefix.append( [''.join(j).strip().lower() for j in self.mods[-1][-1].get_prefix()])
             self.hel_dict.append( {} ); prefix_set = set(self.all_prefix[-1])
             for prefix in prefix_set:
+                #print prefix
                 if hasattr(self.mods[-1][-1], '%sprocess_nhel' % prefix):
                     nhel = getattr(self.mods[-1][-1], '%sprocess_nhel' % prefix).nhel
                     self.hel_dict[-1][prefix] = {}
@@ -127,6 +132,7 @@ class EFTreweighting( Module ):
             if evt_sorted_pdgs not in self.pdgOrderSorted[subproc]:
                 continue
             idx = self.pdgOrderSorted[subproc].index(evt_sorted_pdgs)
+            #print idx
             sub_idx=subproc
             break
 
@@ -186,10 +192,15 @@ class EFTreweighting( Module ):
         final_parts_i = invert_momenta(com_final_parts)
         scale2=0
         weights=[]
-        
+
+        #print 'len mod ', len(self.mods[sub_idx])        
         for mod in self.mods[sub_idx]:
+            #print mod
             weights.append( mod.smatrixhel( final_pdgs, final_parts_i, event.LHE_AlphaS, scale2, nhel) ) 
+
+        #print 'len cards ',len( self.param_cards)
         for i, card in enumerate(self.param_cards):
+            #print card
             if not weights[0]: 
                 print 'Warning, zero weight!!'
                 weights[0]=1

@@ -457,6 +457,34 @@ from CMGTools.TTHAnalysis.tools.higgsDiffRegressionTTH_reduced import HiggsDiffR
 #from CMGTools.TTHAnalysis.tools.adding_dnn import Adding_dnn
 from CMGTools.TTHAnalysis.tools.higgsDiffRegressionTTH_reduced_3l import HiggsDiffRegressionTTH_reduced_3l
 
+from CMGTools.TTHAnalysis.tools.ttH_2lss_dnn_pt_regression import Class_ttH_2lss_dnn_pt_regression
+
+from CMGTools.TTHAnalysis.tools.ttH_2lss_moreVar import Class_ttH_2lss_moreVar
+
+from CMGTools.TTHAnalysis.tools.nanoAOD.EFT_reweighting import EFTreweighting
+
+from CMGTools.TTHAnalysis.tools.nanoAOD.EFT_trees import EFTtrees
+
+from CMGTools.TTHAnalysis.tools.nanoAOD.EFT_trees_nw import EFTtrees_nw
+
+eft_trees = lambda : EFTtrees(label='Hreco_')
+
+eft_trees_nw = lambda : EFTtrees_nw(label='Hreco_')
+
+TTH_reweighting = lambda : EFTreweighting('ttH')
+TTZ_reweighting = lambda : EFTreweighting('ttZ',['_0j_0','_1j_0', '_0j_1','_1j_1', '_0j_2','_1j_2'])
+TTW_reweighting = lambda : EFTreweighting('ttW',['_0j','_1j','_2j'])
+
+
+
+ttH_2lss_moreVar = lambda : Class_ttH_2lss_moreVar(label='Hreco_',
+                                                   variations=[ 'jes%s'%v for v in jecGroups] + ['jer%s'%x for x in ['barrel','endcap1','endcap2highpt','endcap2lowpt' ,'forwardhighpt','forwardlowpt' ]  ]  + ['HEM'],
+                                                   btagDeepCSVveto = 'M')
+
+ttH_2lss_dnn_pt_regression = lambda : Class_ttH_2lss_dnn_pt_regression(label='Hreco_',
+                                                                       variations=[ 'jes%s'%v for v in jecGroups] + ['jer%s'%x for x in ['barrel','endcap1','endcap2highpt','endcap2lowpt' ,'forwardhighpt','forwardlowpt' ]  ]  + ['HEM'],
+                                                         btagDeepCSVveto = 'M')
+
 higgsDiffRegressionTTH_reduced_3l = lambda : HiggsDiffRegressionTTH_reduced_3l(label='Hreco_',
                                                                                variations=[ 'jes%s'%v for v in jecGroups] + ['jer%s'%x for x in ['barrel','endcap1','endcap2highpt','endcap2lowpt' ,'forwardhighpt','forwardlowpt' ]  ]  + ['HEM'],
                                                                                btagDeepCSVveto = 'M')
