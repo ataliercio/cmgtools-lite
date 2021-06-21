@@ -1,0 +1,3 @@
+incl_sigprompt : + ; IncludeMca="ttH-multilepton/mca-includes/mca-2lss-sigprompt-splitdecays-stxs-diff_signal.txt"
+#incl_datafakes  : + ; IncludeMca="ttH-multilepton/mca-includes/mca-data.txt", FakeRate="ttH-multilepton/fakeRate-2lss-frdata.txt", Label="Fakes", FillColor=ROOT.kBlack, FillStyle=3005, PostFix='_fakes'
+#incl_dataflips  : + ; IncludeMca="ttH-multilepton/mca-includes/mca-data-forFlips_new.txt", FakeRate="ttH-multilepton/flipRate-2lss-frdata.txt", Label="Flips", FillColor=ROOT.kBlack, FillStyle=3006, PostFix='_flips'
