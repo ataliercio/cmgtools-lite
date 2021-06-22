@@ -65,17 +65,17 @@ if('2016' not in str(year_) and '2017' not in str(year_) and '2018' not in str(y
 
 if('2016' in str(year_)):
     luminosity = 35.9
-    input_dir = in_dir_+year_
+    input_dir = in_dir_#+year_
     #input_dir_3l = "/nfs/user/atalier/skim_3l_cp_new/"
     #blah = "{P}/5_BDThtt_reco_new_blah"
 if('2017' in str(year_)):
     luminosity = 41.5
-    input_dir = in_dir_+year_
+    input_dir = in_dir_#+year_
     #input_dir_3l = "/nfs/user/atalier/skim_3l_2017_new/"
     #blah = "{P}/5_BDThtt_reco_new_blah"
 if('2018' in str(year_)):
     luminosity = 59.7
-    input_dir = in_dir_+year_
+    input_dir = in_dir_#+year_
     #input_dir_3l = "/nfs/user/atalier/skim_3l_2018/"
     #blah = "/nfs/user/atalier/big_ntuples/2018/5_BDThtt_reco_new_blah"
 
