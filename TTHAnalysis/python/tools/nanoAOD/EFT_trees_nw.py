@@ -17,7 +17,7 @@ from keras import optimizers
 from keras.models import load_model
 
 class EFTtrees_nw(Module):
-    def __init__(self,label="_Recl", variations=[], cut_BDT_rTT_score = 0.0, btagDeepCSVveto = 'M', doSystJEC=False):
+    def __init__(self,label="_Recl", variations=[], cut_BDT_rTT_score = 0.0, btagDeepCSVveto = 'M', doSystJEC=True):
 
         self.label = label
         self.cut_BDT_rTT_score = cut_BDT_rTT_score

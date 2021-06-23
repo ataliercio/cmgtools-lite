@@ -459,6 +459,8 @@ from CMGTools.TTHAnalysis.tools.higgsDiffRegressionTTH_reduced_3l import HiggsDi
 
 from CMGTools.TTHAnalysis.tools.ttH_2lss_dnn_pt_regression import Class_ttH_2lss_dnn_pt_regression
 
+from CMGTools.TTHAnalysis.tools.ttH_2lss_dnn_pt_regression_EFT import Class_ttH_2lss_dnn_pt_regression_EFT
+
 from CMGTools.TTHAnalysis.tools.ttH_2lss_moreVar import Class_ttH_2lss_moreVar
 
 from CMGTools.TTHAnalysis.tools.nanoAOD.EFT_reweighting import EFTreweighting
@@ -482,6 +484,11 @@ ttH_2lss_moreVar = lambda : Class_ttH_2lss_moreVar(label='Hreco_',
                                                    btagDeepCSVveto = 'M')
 
 ttH_2lss_dnn_pt_regression = lambda : Class_ttH_2lss_dnn_pt_regression(label='Hreco_',
+                                                                       variations=[ 'jes%s'%v for v in jecGroups] + ['jer%s'%x for x in ['barrel','endcap1','endcap2highpt','endcap2lowpt' ,'forwardhighpt','forwardlowpt' ]  ]  + ['HEM'],
+                                                         btagDeepCSVveto = 'M')
+
+
+ttH_2lss_dnn_pt_regression_EFT = lambda : Class_ttH_2lss_dnn_pt_regression_EFT(label='Hreco_',
                                                                        variations=[ 'jes%s'%v for v in jecGroups] + ['jer%s'%x for x in ['barrel','endcap1','endcap2highpt','endcap2lowpt' ,'forwardhighpt','forwardlowpt' ]  ]  + ['HEM'],
                                                          btagDeepCSVveto = 'M')
 
