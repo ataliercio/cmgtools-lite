@@ -10,7 +10,7 @@ elif 'gpetrucc-vm2.cern.ch' in os.environ['HOSTNAME']:       ORIGIN="/data/gpetr
 elif 'fanae' in os.environ['HOSTNAME']:       ORIGIN="/pool/ciencias/HeppyTrees/EdgeZ/TTH/"; 
 elif 'gae' in os.environ['HOSTNAME']:       ORIGIN="/pool/ciencias/HeppyTrees/EdgeZ/TTH/"; 
 elif 'psi' in os.environ['HOSTNAME']:       ORIGIN="/pnfs/psi.ch/cms/trivcat/store/user/sesanche/NanoTrees_TTH_090120_091019_v6_skim2lss_temp/"; 
-else: ORIGIN="/afs/cern.ch/work/p/peruzzi"; 
+else: ORIGIN="/nfs/user/pvischia/tth/v6/"; 
 
 if len(sys.argv) < 4: 
     print 'Sytaxis is %s [outputdir] [year] [region] [other]'%sys.argv[0]
@@ -33,7 +33,7 @@ os.system("test -d cards/{OUTNAME} || mkdir -p cards/{OUTNAME}".format(OUTNAME=O
 OPTIONS="{OPTIONS} --od cards/{OUTNAME} ".format(OPTIONS=OPTIONS, OUTNAME=OUTNAME)
 #T2L="-P {ORIGIN}/NanoTrees_TTH_091019_v6pre_skim2lss/{YEAR} --FMCs {{P}}/0_jmeUnc_v1  --Fs  {{P}}/1_recl/ --FMCs {{P}}/2_scalefactors --Fs {{P}}/3_tauCount --Fs {{P}}/6_mva3l --Fs {{P}}/6_mva2lss_new/  --Fs {{P}}/6_mva4l --xf TTTW --xf TTWH".format(ORIGIN=ORIGIN, YEAR=YEAR)
 
-T2L="-P {ORIGIN}/NanoTrees_TTH_090120_091019_v6_skim2lss/{YEAR} --FMCs {{P}}/0_jmeUnc_v1  --Fs {{P}}/1_recl_allvars --FMCs {{P}}/2_btag_SFs --FMCs {{P}}/2_scalefactors_lep_fixed --Fs {{P}}/3_tauCount --Fs {{P}}/4_evtVars --Fs {{P}}/5_BDThtt_reco_new_blah --Fs {{P}}/6_mva2lss --Fs {{P}}/6_mva3l --Fs {{P}}/6_mva4l --Fs {{P}}/6_mva_2lss1tau --FMCs {{P}}/6_mva_tauSFs  --xf TTTW --xf TTWH".format(ORIGIN=ORIGIN, YEAR=YEAR)
+T2L="-P {ORIGIN}/NanoTrees_TTH_090120_091019_v6_skim2lss_forCP/{YEAR} --FMCs {{P}}/0_jmeUnc_v1  --Fs {{P}}/1_recl_allvars --FMCs {{P}}/2_btag_SFs --FMCs {{P}}/2_scalefactors_lep_fixed --Fs {{P}}/3_tauCount --Fs {{P}}/4_evtVars --Fs {{P}}/5_BDThtt_reco_new_blah --Fs {{P}}/6_mva2lss --Fs {{P}}/6_mva3l --Fs {{P}}/6_mva4l --Fs {{P}}/6_mva_2lss1tau --FMCs {{P}}/6_mva_tauSFs  --xf TTTW --xf TTWH".format(ORIGIN=ORIGIN, YEAR=YEAR)
 if "scan_CP" in OTHER:
    T2L="-P {ORIGIN}/NanoTrees_TTH_090120_091019_v6_skim2lss_forCP/{YEAR} --FMCs {{P}}/0_jmeUnc_v1  --Fs {{P}}/1_recl_allvars --FMCs {{P}}/2_btag_SFs --FMCs {{P}}/2_scalefactors_lep_fixed --Fs {{P}}/3_tauCount --Fs {{P}}/4_evtVars --Fs {{P}}/5_BDThtt_reco_new_blah --Fs {{P}}/6_mva2lss --Fs {{P}}/6_mva3l --Fs {{P}}/6_mva4l  --FMCs {{P}}/A_thqweights --xf TTTW --xf TTWH".format(ORIGIN=ORIGIN, YEAR=YEAR)
 T3L=T2L
@@ -217,7 +217,7 @@ if REGION == "cr_4l":
     print submit.format(command=TORUN)
         
 if REGION=="4l": 
-    OPT_4L='{T4L} {OPTIONS} -W "L1PreFiringWeight_Nom*puWeight*btagSF_shape*leptonSF_4l*triggerSF_ttH(LepGood1_pdgId, LepGood1_conePt, LepGood2_pdgId, LepGood2_conePt, 3, year) {SCAN_EXTRA}"'.format(T4L=T4L,OPTIONS=OPTIONS)
+    OPT_4L='{T4L} {OPTIONS} -W "L1PreFiringWeight_Nom*puWeight*btagSF_shape*leptonSF_4l*triggerSF_ttH(LepGood1_pdgId, LepGood1_conePt, LepGood2_pdgId, LepGood2_conePt, 3, year) {SCAN_EXTRA}"'.format(T4L=T4L,OPTIONS=OPTIONS,SCAN_EXTRA=SCAN_EXTRA)
     CATPOSTFIX=""
     TORUN="python {SCRIPT} {DOFILE} ttH-multilepton/mca-4l-{MCASUFFIX}{MCAOPTION}.txt ttH-multilepton/4l_tight.txt {FUNCTION_4L} {SYSTS} {OPT_4L} --binname ttH_4l{CATPOSTFIX}_{YEAR} --year {YEAR} ".format(SCRIPT=SCRIPT, DOFILE=DOFILE,MCASUFFIX=MCASUFFIX,MCAOPTION=MCAOPTION,FUNCTION_4L=FUNCTION_4L,SYSTS=SYSTS,OPT_4L=OPT_4L,CATPOSTFIX=CATPOSTFIX,YEAR=YEAR,SCAN_EXTRA=SCAN_EXTRA)
     

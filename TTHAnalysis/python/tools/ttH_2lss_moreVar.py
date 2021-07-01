@@ -17,7 +17,7 @@ from keras import optimizers
 from keras.models import load_model
 
 class Class_ttH_2lss_moreVar(Module):
-    def __init__(self,label="_Recl", variations=[], cut_BDT_rTT_score = 0.0, btagDeepCSVveto = 'M', doSystJEC=True):
+    def __init__(self,label="_Recl", variations=[], cut_BDT_rTT_score = 0.0, btagDeepCSVveto = 'M', doSystJEC=False):
         def loss_MSEDeltaVar(y_true, y_pred):
             y_true = tf.cast(y_true,tf.float32)
             y_pred = tf.cast(y_pred,tf.float32)

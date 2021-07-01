@@ -456,7 +456,7 @@ from CMGTools.TTHAnalysis.tools.higgsDiffRegressionTTH_3l import HiggsDiffRegres
 from CMGTools.TTHAnalysis.tools.higgsDiffRegressionTTH_reduced import HiggsDiffRegressionTTH_reduced
 #from CMGTools.TTHAnalysis.tools.adding_dnn import Adding_dnn
 from CMGTools.TTHAnalysis.tools.higgsDiffRegressionTTH_reduced_3l import HiggsDiffRegressionTTH_reduced_3l
-
+from CMGTools.TTHAnalysis.tools.adding_dnn import Adding_dnn
 from CMGTools.TTHAnalysis.tools.ttH_2lss_dnn_pt_regression import Class_ttH_2lss_dnn_pt_regression
 
 from CMGTools.TTHAnalysis.tools.ttH_2lss_dnn_pt_regression_EFT import Class_ttH_2lss_dnn_pt_regression_EFT
@@ -468,6 +468,10 @@ from CMGTools.TTHAnalysis.tools.nanoAOD.EFT_reweighting import EFTreweighting
 from CMGTools.TTHAnalysis.tools.nanoAOD.EFT_trees import EFTtrees
 
 from CMGTools.TTHAnalysis.tools.nanoAOD.EFT_trees_nw import EFTtrees_nw
+
+adding_dnn = lambda : Adding_dnn(label='Hreco_',
+                        variations=[ 'jes%s'%v for v in jecGroups] + ['jer%s'%x for x in ['barrel','endcap1','endcap2highpt','endcap2lowpt' ,'forwardhighpt','forwardlowpt' ]  ]  + ['HEM'],
+                                btagDeepCSVveto = 'M')
 
 eft_trees = lambda : EFTtrees(label='Hreco_')
 
